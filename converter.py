@@ -2,9 +2,8 @@ import subprocess
 from typing import NamedTuple
 import logging
 import os
+import constants as c
 
-OUT_DIR = 'downloaded'
-TMP_DIR = OUT_DIR + os.sep + 'tmp'
 CONFIG_BIG_VIDEO = [
     '-x',
     '--no-overwrites',
@@ -162,11 +161,11 @@ def ffmpeg_cmd(in_name: str,
 if __name__ == "__main__":
     logging.basicConfig(level=logging.DEBUG)
     for track in music:
-        track_path = TMP_DIR + os.sep + track.title + '.opus'
-        out_dir = OUT_DIR + os.sep + track.title
-        if not os.path.exists(track_path):
+        track_path = c.TMP_DIR + os.sep + track.title + '.opus'
+        out_dir = c.OUT_DIR + os.sep + track.title
+        if not os.path.exists(track_path) and not os.path.exists(out_dir):
             subprocess.run(downloader_cmd(
-                CONFIG_BIG_VIDEO, track_path, track.url))
+                CONFIG_BIG_VIDEO, c.TMP_DIR + os.sep + track.title, track.url))
         if not os.path.exists(out_dir):
             os.mkdir(out_dir)
             for track_info in parse_timestamps(track.timestamps, track.end_time):
@@ -176,3 +175,5 @@ if __name__ == "__main__":
                     track_info.end,
                     out_dir + os.sep + track_info.name + '.opus',
                 ))
+            os.remove(track_path)
+        logging.debug(f'Skipping {track.title}')
