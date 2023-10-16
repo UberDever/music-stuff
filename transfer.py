@@ -17,6 +17,7 @@ if __name__ == "__main__":
     for src, dirs, files in os.walk(c.OUT_DIR):
         if src == c.TMP_DIR or src == c.OUT_DIR:
             continue
+        src = src.replace(':', '')
         dst = args.path + os.sep + os.path.basename(src)
         if os.path.exists(dst):
             print(f'Skipping {dst} since it exists in the source')
@@ -25,8 +26,8 @@ if __name__ == "__main__":
         try:  # ignore permissions copy failure
             shutil.copytree(src, dst)
         except OSError as e:
-            if e.errno == 95:
-                pass
+            if e.errno != 95:
+                raise e
         if args.delete == 'y':
             for file in files:
                 path = src + os.sep + file

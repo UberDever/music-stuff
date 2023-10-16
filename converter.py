@@ -1040,7 +1040,8 @@ def ffmpeg_cmd(in_name: str,
                from_time: str,
                to_time: str,
                out_name: str) -> list[str]:
-    return ['ffmpeg', '-i', in_name, '-ss', from_time, '-to', to_time, out_name]
+    return ['ffmpeg', '-i', in_name, '-b:a', '128k',
+            '-ss', from_time, '-to', to_time, out_name]
 
 
 def create_stubs_to_ignore():
@@ -1048,6 +1049,13 @@ def create_stubs_to_ignore():
         path = c.OUT_DIR + os.sep + track.title
         if not os.path.exists(path):
             os.mkdir(path)
+
+
+def path_friendly(path: str) -> str:
+    to_remove = '/:*?"<>|'
+    for ch in to_remove:
+        path = path.replace(ch, '')
+    return path
 
 
 if __name__ == "__main__":
@@ -1086,8 +1094,9 @@ if __name__ == "__main__":
     if args.create_stubs:
         create_stubs_to_ignore()
     for track in music:
-        track_path = c.TMP_DIR + os.sep + track.title + '.opus'
-        out_dir = c.OUT_DIR + os.sep + track.title
+        title = path_friendly(track.title)
+        track_path = c.TMP_DIR + os.sep + title + '.opus'
+        out_dir = c.OUT_DIR + os.sep + title
 
         if args.download:
             if not os.path.exists(track_path) and not os.path.exists(out_dir):
@@ -1095,10 +1104,10 @@ if __name__ == "__main__":
                     subprocess.run(
                         downloader_cmd(
                             CONFIG_BIG_VIDEO,
-                            c.TMP_DIR + os.sep + track.title,
+                            c.TMP_DIR + os.sep + title,
                             track.url))
             else:
-                logging.debug(f'Skipping for loading {track.title}')
+                logging.debug(f'Skipping for loading {title}')
 
         if args.convert:
             if not os.path.exists(out_dir):
