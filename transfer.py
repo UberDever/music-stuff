@@ -7,6 +7,11 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument(
         '-p', '--path', help='Path to transfer directory', required=True)
+    parser.add_argument(
+        '-d', '--delete',
+        help='Should delete files after transfer', required=True,
+        choices=['y', 'n']
+    )
     args = parser.parse_args()
 
     for src, dirs, files in os.walk(c.OUT_DIR):
@@ -22,7 +27,8 @@ if __name__ == "__main__":
         except OSError as e:
             if e.errno == 95:
                 pass
-        for file in files:
-            path = src + os.sep + file
-            print(f'Removing {path}')
-            os.remove(path)
+        if args.delete == 'y':
+            for file in files:
+                path = src + os.sep + file
+                print(f'Removing {path}')
+                os.remove(path)

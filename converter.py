@@ -3,6 +3,7 @@ from typing import NamedTuple
 import logging
 import os
 import constants as c
+import argparse
 
 CONFIG_BIG_VIDEO = [
     '-x',
@@ -264,7 +265,7 @@ music = [
             48:53 Deimos
             53:15 Grabbag (Duke Nukem Cover)
             55:28 Durandal (Marathon 2 Cover)
-            58:59 G.M.G
+            58:59 G M G
             01:02:06 Wraith
             01:06:00 Vyper
             01:09:04 Wolfenstein Metal Remix
@@ -399,7 +400,7 @@ music = [
             17:38  Nikita
             22:30  Orbital Strike
             26:54  SKULjammer
-            32:11  H.exe
+            32:11  H exe
             35:28  Streets of Fire
             41:04  Terror Eyes
             46:16  Source Code
@@ -839,6 +840,149 @@ music = [
             3:31:23 - Tomb of Velleties (Lunar Sanctuary)
      """
     ),
+    MusicInfo(
+        'Deus Ex 2000 Full OST',
+        'https://www.youtube.com/watch?v=JhjkBE3d3Uw',
+        '5:06:35',
+        """
+            0:00 Main Title
+            2:25 Intro Sequence
+            4:43 Training Room
+            6:48 Liberty Island
+            11:24 Liberty Island Conversation
+            13:37 Liberty Island Action
+            16:14 Liberty Island Death
+            17:35 UNATCO
+            20:03 UNATCO Conversation
+            22:31 UNATCO Action
+            25:49 UNATCO Death
+            26:16 Leaving Liberty Island
+            27:14 Battery Park
+            30:44 Battery Park Conversation
+            32:56 Battery Park Action
+            35:17 Battery Park Death
+            36:29 NYC Streets
+            41:05 NYC Conversation
+            43:18 NYC Action
+            45:17 NYC Death
+            45:40 Underworld Tavern
+            51:01 Underworld Tavern Action
+            51:24 Lebedev's Airfield
+            54:24 Airfield Conversation
+            55:37 Airfield Action
+            57:31 Airfield Death
+            58:02 Leaving Lebedev's Airfield
+            58:40 Gunther Hermann Arrests JC
+            59:14 Majestic 12 Labs
+            1:02:44 Majestic 12 Conversation
+            1:04:54 Majestic 12 Action
+            1:07:39 Majestic 12 Death
+            1:08:10 Enemy Within (UNATCO Escape)
+            1:12:02 UNATCO Escape Conversation
+            1:14:15 UNATCO Escape Action
+            1:17:20 UNATCO Escape Death
+            1:17:45 Hong Kong Helipad
+            1:20:20 Helipad Action
+            1:22:37 Helipad Death
+            1:23:08 The Synapse (Hong Kong Streets)
+            1:27:31 Hong Kong Conversation
+            1:29:34 Hong Kong Action
+            1:31:34 Hong Kong Death
+            1:32:02 Desolation (Hong Kong Canal)
+            1:34:25 Hong Kong Canal Conversation
+            1:35:36 Hong Kong Canal Action
+            1:37:19 Hong Kong Canal Death
+            1:37:42 Lucky Money Club 1
+            1:40:10 Lucky Money Club Action 1
+            1:40:31 Lucky Money Club 2
+            1:43:38 Lucky Money Club Action 2
+            1:43:58 VersaLife
+            1:47:04 VersaLife Conversation
+            1:49:34 VersaLife Action
+            1:51:57 VersaLife Death
+            1:52:24 Leaving Hong Kong
+            1:52:51 Return to NYC
+            1:56:03 NYC Return Conversation
+            1:56:56 NYC Return Action
+            1:58:15 NYC Return Death
+            1:58:34 To The Naval Base
+            1:59:31 Naval Base
+            2:03:05 Naval Base Conversation
+            2:05:37 Naval Base Action
+            2:06:47 Naval Base Death
+            2:07:22 Paris Streets
+            2:08:41 La Porte de l'Enfer 1
+            2:11:41 La Porte de l'Enfer Action 1
+            2:11:56 La Porte de l'Enfer 2
+            2:16:38 La Porte de l'Enfer Action 2
+            2:17:00 Evading Gunther Herman
+            2:18:20 DuClare Château
+            2:21:21 Château Conversation
+            2:22:40 Château Action
+            2:25:30 Château Death
+            2:26:01 Paris Cathedral
+            2:29:47 Paris Cathedral Conversation
+            2:30:42 Paris Cathedral Action
+            2:33:17 Paris Cathedral Death
+            2:34:22 Vandenberg
+            2:37:31 Vandenberg Conversation
+            2:39:39 Vandenberg Action
+            2:41:37 Vandenberg Death
+            2:42:04 The Nothing (Tunnel)
+            2:45:24 Tunnel Action
+            2:47:32 Tunnel Death
+            2:48:08 Leaving Vandenberg
+            2:48:39 Nauticus (Oceanlab)
+            2:51:48 Ocean Conversation
+            2:53:46 Ocean Action
+            2:56:34 Ocean Death
+            2:56:54 Oceanlab Complex
+            3:00:34 Ocean Complex Conversation
+            3:02:01 Ocean Complex Action
+            3:04:10 Ocean Complex Death
+            3:05:22 Leaving the Oceanlab
+            3:05:45 Begin the End (Bunker)
+            3:09:33 Bunker Conversation
+            3:10:16 Bunker Action
+            3:12:53 Bunker Death
+            3:13:19 Area 51
+            3:17:46 Area 51 Conversation
+            3:19:36 Area 51 Action
+            3:21:37 Area 51 Death
+            3:22:04 Dark Age Ending
+            3:23:22 Helios Ending
+            3:24:43 Illuminati Ending
+            3:26:35 The Illuminati
+            3:29:14 DX Club Mix
+            3:32:15 Conspiravision
+            3:38:03 Main Title (Album Version)
+            3:40:30 UNATCO Conversation (Intro)
+            3:41:10 UNATCO Conversation (Extended)
+            3:45:10 Battery Park Conversation (Extended)
+            3:48:17 Underworld Tavern (Alternate)
+            3:50:32 Majestic 12 Labs (Unused)
+            3:52:45 UNATCO Escape (Unused)
+            3:53:24 Helipad Conversation (Unused)
+            3:55:37 Naval Base (Unused)
+            3:57:49 Tunnel Conversation (Unused)
+            3:59:42 Area 51 (Unused)
+            4:01:14 Dark Age Ending (Album Version)
+            4:02:29 Main Title (Conspiracy Version)
+            4:04:56 The God Machine [Vig]
+            4:11:19 Distortion HQ [Nutritious]
+            4:14:42 The Search for Ambrosia [zircon & Jillian Aversa]
+            4:19:44 Neonature [nervous_testpilot]
+            4:25:44 MachiNation [Alexander Brandon]
+            4:28:20 Sadevakio [Eino Keskitalo]
+            4:33:47 Human Soldier [halc]
+            4:37:48 Augmented UNATCO [VideoGameManiac]
+            4:46:01 UNATCO (Jared Burgin Remix)
+            4:49:07 UNATCO Theme (Vieon Remix)
+            4:52:32 Siren Synapse [Alexander Brandon & Jimmy Hinson]
+            4:56:56 Endless Night [Technomancer]
+            5:01:45 Ma Chérie Nicolette [Alexander Brandon & Jimmy Hinson]
+     """
+    ),
 ]
 
 # MusicInfo(
@@ -868,6 +1012,7 @@ def parse_timestamps(timestamps: str, end_time: str) -> list[TrackInfo]:
     times = []
     titles = []
     lines = timestamps.strip().splitlines()
+    number = 0
     for line in lines:
         parts = line.strip().split()
         time = list(filter(lambda x: looks_like_time(x), parts))
@@ -878,7 +1023,9 @@ def parse_timestamps(timestamps: str, end_time: str) -> list[TrackInfo]:
             p in x for p in forbidden_parts), parts))
 
         assert len(parts) != 0, line
-        titles.append(' '.join(parts))
+        n = "{:03d}".format(number)
+        number += 1
+        titles.append(n + ' ' + ' '.join(parts))
         times.append(time)
 
     time_pairs = zip(titles, times, (times + [end_time])[1:])
@@ -896,23 +1043,75 @@ def ffmpeg_cmd(in_name: str,
     return ['ffmpeg', '-i', in_name, '-ss', from_time, '-to', to_time, out_name]
 
 
+def create_stubs_to_ignore():
+    for track in music:
+        path = c.OUT_DIR + os.sep + track.title
+        if not os.path.exists(path):
+            os.mkdir(path)
+
+
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(
+        usage="""
+    Script downloads music from youtube via yt-dlp and
+    splits it into pieces by provided timestamps
+
+    Some arguments must be provided
+    """
+    )
+    parser.add_argument(
+        '-c',
+        '--convert',
+        help="Start convertion for files that haven't been converted yet",
+        action='store_true'
+    )
+    parser.add_argument(
+        '-d',
+        '--download',
+        help=f"Start track download into {c.TMP_DIR}",
+        action='store_true'
+    )
+    parser.add_argument(
+        '-s',
+        '--create-stubs',
+        help="Create stubs for all tracks listed in the script to skip them",
+        action='store_true'
+    )
+    args = parser.parse_args()
+    if not any(val for key, val in vars(args).items()):
+        parser.print_help()
+        exit(-1)
+
     logging.basicConfig(level=logging.DEBUG)
+    if args.create_stubs:
+        create_stubs_to_ignore()
     for track in music:
         track_path = c.TMP_DIR + os.sep + track.title + '.opus'
         out_dir = c.OUT_DIR + os.sep + track.title
-        if not os.path.exists(track_path) and not os.path.exists(out_dir):
-            if track.url != c.NO_URL:
-                subprocess.run(downloader_cmd(
-                    CONFIG_BIG_VIDEO, c.TMP_DIR + os.sep + track.title, track.url))
-        if not os.path.exists(out_dir):
-            os.mkdir(out_dir)
-            for track_info in parse_timestamps(track.timestamps, track.end_time):
-                subprocess.run(ffmpeg_cmd(
-                    track_path,
-                    track_info.start,
-                    track_info.end,
-                    out_dir + os.sep + track_info.name + '.opus',
-                ))
-            os.remove(track_path)
-        logging.debug(f'Skipping {track.title}')
+
+        if args.download:
+            if not os.path.exists(track_path) and not os.path.exists(out_dir):
+                if track.url != c.NO_URL:
+                    subprocess.run(
+                        downloader_cmd(
+                            CONFIG_BIG_VIDEO,
+                            c.TMP_DIR + os.sep + track.title,
+                            track.url))
+            else:
+                logging.debug(f'Skipping for loading {track.title}')
+
+        if args.convert:
+            if not os.path.exists(out_dir):
+                os.mkdir(out_dir)
+                for track_info in parse_timestamps(
+                        track.timestamps, track.end_time):
+                    out = out_dir + os.sep + track_info.name + '.opus'
+                    subprocess.run(ffmpeg_cmd(
+                        track_path,
+                        track_info.start,
+                        track_info.end,
+                        out,
+                    ))
+                os.remove(track_path)
+            else:
+                logging.debug(f'Skipping for convertion {track.title}')
