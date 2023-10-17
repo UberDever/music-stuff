@@ -18,9 +18,16 @@ class MusicInfo(NamedTuple):
     timestamps: str
 
 
+def path_friendly(path: str) -> str:
+    to_remove = '/:*?"<>|'
+    for ch in to_remove:
+        path = path.replace(ch, '')
+    return path
+
+
 music = [
     MusicInfo(
-        'Peaceful Jeremy Soule #1',
+        path_friendly('Peaceful Jeremy Soule #1'),
         'https://www.youtube.com/watch?v=cbqxazYJp_U',
         '3:50:38',
         """
@@ -81,7 +88,7 @@ music = [
             Skyrim Atmospheres (Skyrim) 3:08:01 """
     ),
     MusicInfo(
-        'Hotline Miami Soundtrack',
+        path_friendly('Hotline Miami Soundtrack'),
         'https://www.youtube.com/watch?v=oKD-MVfC9Ag',
         '1:31:33',
         """
@@ -111,7 +118,7 @@ music = [
             """
     ),
     MusicInfo(
-        'Castlevania SOTN + Songs Saturn',
+        path_friendly('Castlevania SOTN + Songs Saturn'),
         'https://www.youtube.com/watch?v=eRmpU0RZOdU',
         '1:44:23',
         """
@@ -162,7 +169,7 @@ music = [
             """
     ),
     MusicInfo(
-        'Baba is You OST',
+        path_friendly('Baba is You OST'),
         'https://www.youtube.com/watch?v=dVyd_hAq6G4',
         '1:27:11',
         """
@@ -187,7 +194,7 @@ music = [
         """
     ),
     MusicInfo(
-        'TNT: Evilution - MUSIC COVER',
+        path_friendly('TNT: Evilution - MUSIC COVER'),
         'https://www.youtube.com/watch?v=He3F4CQFZVY',
         '37:42',
         """
@@ -209,7 +216,7 @@ music = [
     """
     ),
     MusicInfo(
-        'Castlevania 3 Soundtrack Remastered',
+        path_friendly('Castlevania 3 Soundtrack Remastered'),
         'https://www.youtube.com/watch?v=UwIQ3nBZ4Dw',
         '32:25',
         """
@@ -244,7 +251,7 @@ music = [
      """
     ),
     MusicInfo(
-        'Quake Champions: Doom Edition',
+        path_friendly('Quake Champions: Doom Edition'),
         'https://www.youtube.com/watch?v=ne6_AsTRZd4',
         '1:56:00',
         """
@@ -281,7 +288,7 @@ music = [
      """
     ),
     MusicInfo(
-        'The Elder Scrolls II: Daggerfall OST',
+        path_friendly('The Elder Scrolls II: Daggerfall OST'),
         'https://www.youtube.com/watch?v=CqUCz7E1s90',
         '2:34:40',
         """
@@ -368,7 +375,7 @@ music = [
      """
     ),
     MusicInfo(
-        'Mega Drive - 198XAD',
+        path_friendly('Mega Drive - 198XAD'),
         'https://www.youtube.com/watch?v=l3NoYyNKSXQ',
         '1:09:44',
         """
@@ -389,7 +396,7 @@ music = [
      """
     ),
     MusicInfo(
-        'Mega Drive - 199XAD',
+        path_friendly('Mega Drive - 199XAD'),
         'https://www.youtube.com/watch?v=k40GsYoQgNo',
         '57:20',
         """
@@ -408,7 +415,7 @@ music = [
      """
     ),
     MusicInfo(
-        'Mega Drive - Seas Of Infinity',
+        path_friendly('Mega Drive - Seas Of Infinity'),
         'https://www.youtube.com/watch?v=CrHRv11O9Cg',
         '53:41',
         """
@@ -426,7 +433,7 @@ music = [
      """
     ),
     MusicInfo(
-        'КОРОЛЬ И ШУТ',
+        path_friendly('КОРОЛЬ И ШУТ'),
         'https://www.youtube.com/watch?v=0-C0lCPFTj8',
         '2:53:11',
         """
@@ -483,7 +490,7 @@ music = [
      """
     ),
     MusicInfo(
-        'TheGreatKingKukuiYumeNikki',
+        path_friendly('TheGreatKingKukuiYumeNikki'),
         c.NO_URL,
         '3:00:58',
         """
@@ -625,7 +632,7 @@ music = [
      """
     ),
     MusicInfo(
-        'Yume Nikki 2kki Sleep Mix Naked flames',
+        path_friendly('Yume Nikki 2kki Sleep Mix Naked flames'),
         'https://youtu.be/4XPBqvUfHwo',
         '1:20:04',
         """
@@ -692,7 +699,7 @@ music = [
     """
     ),
     MusicInfo(
-        'Yume Nikki Fangames Sleep Mix Naked Flames',
+        path_friendly('Yume Nikki Fangames Sleep Mix Naked Flames'),
         'https://www.youtube.com/watch?v=hnKpn7iPW6Y',
         '1:01:54',
         """
@@ -727,7 +734,7 @@ music = [
      """
     ),
     MusicInfo(
-        'yume 2kki ost - sleep mix lavender hearts',
+        path_friendly('yume 2kki ost - sleep mix lavender hearts'),
         'https://www.youtube.com/watch?v=ChaoIMuN_9g',
         '1:19:28',
         """
@@ -747,7 +754,7 @@ music = [
      """
     ),
     MusicInfo(
-        'Yume 2kki ~ Dream Exploration',
+        path_friendly('Yume 2kki ~ Dream Exploration'),
         'https://www.youtube.com/watch?v=-gtQuKQVknk',
         '3:38:49',
         """
@@ -841,7 +848,7 @@ music = [
      """
     ),
     MusicInfo(
-        'Deus Ex 2000 Full OST',
+        path_friendly('Deus Ex 2000 Full OST'),
         'https://www.youtube.com/watch?v=JhjkBE3d3Uw',
         '5:06:35',
         """
@@ -986,7 +993,7 @@ music = [
 ]
 
 # MusicInfo(
-#     '',
+# path_friendly(    ''),
 #     '',
 #     '',
 #     """
@@ -1029,7 +1036,8 @@ def parse_timestamps(timestamps: str, end_time: str) -> list[TrackInfo]:
         times.append(time)
 
     time_pairs = zip(titles, times, (times + [end_time])[1:])
-    return [TrackInfo(title, start, end) for title, start, end in time_pairs]
+    return [TrackInfo(path_friendly(title), start, end)
+            for title, start, end in time_pairs]
 
 
 def downloader_cmd(config: list[str], out_path: str, url: str) -> list[str]:
@@ -1040,8 +1048,10 @@ def ffmpeg_cmd(in_name: str,
                from_time: str,
                to_time: str,
                out_name: str) -> list[str]:
-    return ['ffmpeg', '-i', in_name, '-b:a', '128k',
-            '-ss', from_time, '-to', to_time, out_name]
+    return ['ffmpeg', '-i', in_name,
+            '-ss', from_time, '-to', to_time,
+            '-c', 'copy',
+            out_name]
 
 
 def create_stubs_to_ignore():
@@ -1049,13 +1059,6 @@ def create_stubs_to_ignore():
         path = c.OUT_DIR + os.sep + track.title
         if not os.path.exists(path):
             os.mkdir(path)
-
-
-def path_friendly(path: str) -> str:
-    to_remove = '/:*?"<>|'
-    for ch in to_remove:
-        path = path.replace(ch, '')
-    return path
 
 
 if __name__ == "__main__":
@@ -1094,7 +1097,7 @@ if __name__ == "__main__":
     if args.create_stubs:
         create_stubs_to_ignore()
     for track in music:
-        title = path_friendly(track.title)
+        title = track.title
         track_path = c.TMP_DIR + os.sep + title + '.opus'
         out_dir = c.OUT_DIR + os.sep + title
 
@@ -1123,4 +1126,4 @@ if __name__ == "__main__":
                     ))
                 os.remove(track_path)
             else:
-                logging.debug(f'Skipping for convertion {track.title}')
+                logging.debug(f'Skipping for convertion {title}')

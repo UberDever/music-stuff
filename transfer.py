@@ -23,11 +23,12 @@ if __name__ == "__main__":
             print(f'Skipping {dst} since it exists in the source')
             continue
         print(f'Copying from {src} to {dst}')
-        try:  # ignore permissions copy failure
+        try:
             shutil.copytree(src, dst)
-        except OSError as e:
-            if e.errno != 95:
-                raise e
+        except OSError:
+            # shutil doesn't bother to fill errno code,
+            # so skip all exceptions
+            pass
         if args.delete == 'y':
             for file in files:
                 path = src + os.sep + file
